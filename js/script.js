@@ -1,90 +1,83 @@
-const login = () => {
-    let usuario;
-    
-    alert("Bienvenido a TecnoDan, a continuacion iniciara con su usuario:")
-    while (true) {
-        usuario = prompt("Ingrese su usuario:");
-        if (usuario.length < 8) {
-            alert("Su usuario tiene menos de 8 caracteres. Inténtelo de nuevo.");
-        } else {
-            alert("Bienvenido, usted ingresó como: " + usuario);
-            break; 
-        }
-    }
+//Definimos items de producto
+let productos = []
+
+//Definimos un carrito vacio
+let carrito = []
+
+//Comprobamos si el carro esta vacio al guardar en localStorage
+let carritoViejo = localStorage.getItem('savedcarrito')
+if (carritoViejo !== null) {
+    carrito = JSON.parse(carritoViejo)
+    mostrarCarrito(carrito);
 }
 
-login();
+//Agregaoms items al carrito
+productos.push({ id: 1, nombre: 'Remera rayada', precio: 12000, cantidad: 1, img: 'remera italy.png' });
+productos.push({ id: 2, nombre: 'Remera negra', precio: 9000, cantidad: 1, img: 'remera M.png' });
+productos.push({ id: 3, nombre: "Pantalon Cargo", precio: 25000, cantidad: 1, img: 'cargo.png' });
+productos.push({ id: 4, nombre: "Pantalon jean", precio: 39000, cantidad: 1, img: 'Jean1.png' });
 
-const productos = [
-    { nombre: 'Monitor', precio: 15000 },
-    { nombre: 'Teclado', precio: 25000 },
-    { nombre: 'Mouse', precio: 10000 }
-];
+//Un contenedor para trabajar el HTML desde JS
+const contenedor = document.getElementById("contenedor");
 
-let carrito = [];
+//Funcion agregar producto por el usuario
+function agregarItem(producto) {
+    let index = carrito.findIndex(p => p.id == producto.id)
+    if (index >= 0) carrito[index].cantidad++;
+    else carrito.push(producto);
+    //console.debug(carrito);
+    guardar(carrito)
+    mostrarCarrito(carrito);
+}
 
-function mostrarProductos() {
-    let mensaje = "Productos disponibles:\n";
-    productos.forEach((producto, comprita) => {
-        mensaje += (comprita + 1) + '. ' + producto.nombre + ' - $' + producto.precio + '\n';
+//Funcion quitar el producto por el usuario
+function quitarItem(producto) {
+    let index = carrito.findIndex(p => p.id == producto.id);
+    if (index >= 0) carrito.splice(index, 1);
+    //console.debug(carrito);
+    guardar(carrito);
+    mostrarCarrito(carrito);
+}
+
+//Guarda en memoria localStorage
+function guardar(carroNuevo) {
+    localStorage.setItem('savedcarrito', JSON.stringify(carroNuevo));
+}
+
+//Mostrar los productos desde la pagina
+productos.forEach(producto => {
+    const div = document.createElement("div")
+    div.innerHTML =
+        `<div class="card">
+    <div class="card-body">
+      <img class= "imagen" src="./assets/img/${producto.img}">
+    </div>
+     <div class="card-title">
+      <h2>${producto.nombre}</h2>
+    </div>
+    <div class="card-footer">
+      <div class="price">
+        <span>$ARS ${producto.precio}</span>
+      </div class="buttons">
+      <button id="agregar" class="add">Agregar al carrito</button>
+      <button id="quitar" class="quit">Quitar del carrito</button>
+    </div>
+  </div>`;
+    div.querySelector('button.add').addEventListener('click', () => { agregarItem(producto) });
+    div.querySelector('button.quit').addEventListener('click', () => { quitarItem(producto) });
+    contenedor.append(div);
+})
+
+//Mostrar el carrito del usuario desde la pagina
+function mostrarCarrito(carro) {
+    const elemento = document.getElementById('carrito');
+    elemento.innerHTML = "";
+
+    carro.forEach(producto => {
+        const p = document.createElement('p');
+        p.innerHTML = `
+        ${producto.id} | ${producto.nombre} | Cantidad: ${producto.cantidad} | Precio: $${producto.precio} | Total: $${producto.precio * producto.cantidad}
+      `;
+        elemento.append(p);
     });
-    return mensaje;
 }
-
-function agregarAlCarrito(comprita) {
-    carrito.push(productos[comprita]);
-    alert(`Agregaste ${productos[comprita].nombre} al carrito.`);
-    calcularTotalCarrito();
-}
-
-function calcularTotalCarrito() {
-    const total = carrito.reduce((acumulador, producto) => acumulador + producto.precio, 0);
-    alert(`El total de tu carrito es: $${total}`);
-}
-
-function mostrarProductosCaros() {
-    const productosCaros = productos.filter(producto => producto.precio > 20);
-    if (productosCaros.length === 0) {
-        alert('No hay productos caros disponibles.');
-    } else {
-        let mensaje = 'Productos caros disponibles:\n';
-        productosCaros.forEach((producto, comprita) => {
-            mensaje += (comprita + 1) + '. ' + producto.nombre + ' - $' + producto.precio + '\n';
-        });
-        alert(mensaje);
-    }
-}
-
-function mostrarNombresProductos() {
-    const nombresProductos = productos.map(producto => producto.nombre);
-    console.log('Nombres de productos:', nombresProductos);
-}
-
-function comprarProducto() {
-    let seleccion;
-    while (true) {
-        const productosLista = mostrarProductos();
-        seleccion = prompt(`Selecciona el número del producto que deseas comprar:\n${productosLista}`);
-        
-        if (seleccion === null) {
-            
-            break;
-        }
-
-        const compritaSeleccionado = parseInt(seleccion) - 1;
-
-        if (compritaSeleccionado >= 0 && compritaSeleccionado < productos.length) {
-            const confirmar = confirm(`¿Estás seguro de que quieres comprar ${productos[compritaSeleccionado].nombre}?`);
-            if (confirmar) {
-                agregarAlCarrito(compritaSeleccionado);
-                break; 
-            }
-        } else {
-            alert('Por favor selecciona un número válido.');
-        }
-    }
-}
-
-comprarProducto();
-
-mostrarNombresProductos();
