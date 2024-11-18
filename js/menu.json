@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "nombre": "Hamburguesa Clásica Simple",
+        "titulo": "La Original", 
+        "descripcion": "Deliciosa hamburguesa de carne de res con lechuga, tomate y nuestra salsa especial.",
+        "precio": 8000.99,
+        "imagen": "../img/hamburguesasimple.jpeg"
+    },
+    {
+        "id": 2,
+        "nombre": "Hamburguesa doble con Queso",
+        "titulo": "Queso Fundido",
+        "descripcion": "Nuestra hamburguesa clásica doble con queso cheddar derretido.",
+        "precio": 10000,
+        "imagen": "../img/doble.jpeg"
+    },
+    {
+        "id": 3,
+        "nombre": "Tenders de pollo",
+        "titulo": "Doble Placer",
+        "descripcion": "Tenders de pollo frescos y crujientes.",
+        "precio": 9000,
+        "imagen": "../img/tenderpollo.jpeg"
+    },
+    {
+        "id": 4,
+        "nombre": "Papas Fritas",
+        "titulo": "Las mejores papas fritas",
+        "descripcion": "Deliciosa opción vegetariana con nuestra exclusiva hamburguesa de lentejas y verduras.",
+        "precio": 5000,
+        "imagen": "../img/fritas.jpeg"
+    },
+    {
+        "id": 5,
+        "nombre": "Aros de cebolla",
+        "titulo": "Super crocantes",
+        "descripcion": "Gran acompañamiento si estas solo.",
+        "precio": 6000,
+        "imagen": "../img/cebolla.jpeg"
+    },
+    {
+        "id": 6,
+        "nombre": "Coca-Cola",
+        "titulo": "La mejor amiga de una haburguesa",
+        "descripcion": "La unica opcion correcta para acompañar una hamburguesa.",
+        "precio": 3000,
+        "imagen": "../img/cocacola.jpeg"
+    }
+]
