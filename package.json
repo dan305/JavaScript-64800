@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "finaljsdanbao",
+=======
+  "name": "primera-entrega-bao-dan",
+>>>>>>> c17b6309ce1832c04d2e45f635b20eaa58abe34b
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

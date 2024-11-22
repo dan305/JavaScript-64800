@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Estilo para lightblueucir la altura del navbar */
 html {
     scroll-behavior: smooth;
@@ -243,3 +244,55 @@ body {
 .cart-item-actions button {
     padding: 0 5px;
 }
+=======
+*{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box;
+  }
+  
+  img.imagen {
+      width: auto;
+      height: 128px;
+    }
+  
+    .container {
+      display: flex;
+      flex-direction: row;
+      padding: 20px;
+      gap: 10px;
+    }
+    
+    .card {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      background-color: rgba(0, 0, 0, 0.445);
+      border-radius: 25px;
+      flex-grow: 1;
+      color: white;
+    }
+  
+    /* .add{
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+    }
+  
+    .quit{
+      padding: 10px;
+      border: none;
+      margin: 5px;
+      border-radius: 10px;
+    }
+  
+    .add:hover{
+      background-color: rgba(31, 31, 31, 0.459);
+      color: white;
+    }
+    .quit:hover{
+      background-color: rgba(31, 31, 31, 0.459);
+      color: white;
+    } */
+>>>>>>> c17b6309ce1832c04d2e45f635b20eaa58abe34b
